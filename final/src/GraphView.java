@@ -46,15 +46,17 @@ public class GraphView extends JComponent {
             tmp = inf.edges.edges[i].second.getSelectedIndex();
             edgesEndPoint[i]=new Vector2(startx+gap,starty+(tmp-countRight/2)*fullset+radius/2);
         }
+
         // edges.showing - сколько рёбер добавил пользвователь
         Graphics2D g2;
         for(int i=0;i<inf.edges.showing;i++){
             g2 = (Graphics2D)g;
             System.out.println(Quna.graph.getEdges());
-            if (Quna.graph.findEdges().getIsResearchingNow())
+            if (Quna.graph.findEdges(inf.first.vertex[inf.edges.edges[i].first.getSelectedIndex()].text.getText(), inf.second.vertex[inf.edges.edges[i].second.getSelectedIndex()].text.getText()).getIsResearchingNow())
                 g2.setStroke(new BasicStroke(6));
             else g2.setStroke(new BasicStroke(2));
-            if (Quna.graph.getEdges().get(i).isIncludeMatching()) g2.setColor(Color.blue);
+            if (Quna.graph.findEdges(inf.first.vertex[inf.edges.edges[i].first.getSelectedIndex()].text.getText(), inf.second.vertex[inf.edges.edges[i].second.getSelectedIndex()].text.getText()).isIncludeMatching())
+                g2.setColor(Color.blue);
             else g2.setColor(Color.cyan);
             g2.drawLine(edgesStartPoint[i].x,edgesStartPoint[i].y,edgesEndPoint[i].x,edgesEndPoint[i].y);
         }

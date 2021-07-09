@@ -60,9 +60,9 @@ class Graph {
         return null;
     }
 
-    public Edge findEdges(Edge e) {
+    public Edge findEdges(String leftName, String rightName) {
         for (Edge edge : graphEdges) {
-            if (edge.equals(e))
+            if (edge.getLeftVertex().getName().equals(leftName) && edge.getRightVertex().getName().equals(rightName))
                 return edge;
         }
         return null;

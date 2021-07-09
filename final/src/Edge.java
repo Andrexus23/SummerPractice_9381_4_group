@@ -43,7 +43,7 @@ class Edge {
         leftV.setMatchingEdge(null);
         rightV.setMatchingEdge(null);
     }
-    @Override
+    /*@Override
     public boolean equals(Object obj) {
        if(this == obj)  return true;
        if(obj instanceof Edge){
@@ -51,7 +51,7 @@ class Edge {
            return (other.leftV.getName().equals(this.leftV.getName()) && other.rightV.getName().equals(this.rightV.getName()));
        }
        return false;
-    }
+    }*/
 
     public String toString() {
         return leftV.getName() + "--" + rightV.getName();

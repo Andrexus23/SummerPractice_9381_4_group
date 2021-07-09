@@ -15,8 +15,7 @@ public class Quna { // если
             if (v.getMatchingEdge() == null) {
                 ArrayList<Edge> list = new ArrayList<Edge>();
                 v.setResearchingNow();
-                System.out.println("хуй " + graph.getLeftVertexes().get(0).edges);
-                saver.appendGraph(graph, false);
+                //saver.appendGraph(graph, false);
                 if (getAlternateWay(v, list)) {
                     for (int i = 0; i < list.size() / 2; i++) {
                         list.get(i * 2 + 1).doExcludeFromMatching();
@@ -28,13 +27,12 @@ public class Quna { // если
                 }
                 saver.appendGraph(graph, true);
                 graph.updatePasses();
+                saver.appendGraph(graph, true);
             }
         }
         logger.writeLog("Max matching is found. End of algorithm\n");
         System.out.print(logger.getLogMes());
         graph.printMatching();
-        System.out.println(":::" + saver.getCurrent().graph.getEdges().size());
-
     }
 
 
@@ -45,13 +43,13 @@ public class Quna { // если
         for (Edge e : vertex.edges) {
             if (!e.isIncludeMatching()) {
                 list.add(e);
-                saver.appendGraph(graph, false);
-                logger.writeLog("Adding edge " + e + " to current matching\n");
+                //saver.appendGraph(graph, false);
+                logger.writeLog("Adding edge " + e + " to current way\n");
                 if (getAlternateWay_2(e.go(vertex), list)) return true;
                 list.get(list.size() - 1).unsetResearchingNow(); // выключаем
                 list.remove(list.size() - 1);
                 saver.appendGraph(graph, false);
-                logger.writeLog("Delete " + e + "\n" );
+                logger.writeLog("Delete " + e + " from current way\n" );
             }
         }
         return false;
@@ -64,12 +62,12 @@ public class Quna { // если
         if (vertex.getMatchingEdge() == null)  return true;
         list.add(vertex.getMatchingEdge());
         //vertex.getMatchingEdge().setResearchingNow(); // включаем
-        logger.writeLog("Adding edge " + vertex.getMatchingEdge() + " to current matching\n");
+        logger.writeLog("Adding edge " + vertex.getMatchingEdge() + " to current way\n");
         if (getAlternateWay(vertex.getMatchingEdge().go(vertex), list)) return true;
         list.get(list.size() - 1).unsetResearchingNow(); // выключаем
         list.remove(list.size() - 1);
         saver.appendGraph(graph, false);
-        logger.writeLog("Delete " + vertex.getMatchingEdge() + " \n");
+        logger.writeLog("Delete " + vertex.getMatchingEdge() + " from current way\n");
         return false;
     }
 

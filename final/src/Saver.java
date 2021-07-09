@@ -39,7 +39,7 @@ public class Saver  {
     public Graph iterBack(){
         do {
             if (stepBack() == null) return null;
-        } while(!getCurrent().isEndOfIteration);
+        } while(!getCurrent().isEndOfIteration && index > 0);
         return getCurrent().graph;
     }
 
