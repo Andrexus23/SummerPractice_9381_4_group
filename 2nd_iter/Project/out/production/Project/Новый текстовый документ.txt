@@ -1,0 +1,18 @@
+static void outputToFile(String pathTo) throws IOException {
+        File file = new File(pathTo);
+        logger.writeLog("Writing to file " + pathTo + "\n");
+        PrintWriter pw = new PrintWriter(file); // создаем объект FileReader для объекта File
+         //создаем BufferedReader с существующего FileReader для построчного считывания
+        pw.println(leftShareCount);
+        for(Graph.Vertex v : graph.getLeftVertexes())
+            pw.println(v.getName());
+        pw.println(rightShareCount);
+        for(Graph.Vertex v : graph.getRightVertexes())
+            pw.println(v.getName());
+        pw.println(edgesCount);
+        for (Edge e : graph.getGraphEdges() ) {
+            pw.println(e.getLeftVertex().getName());
+            pw.println(e.getRightVertex().getName());
+        }
+        pw.close();
+    }
