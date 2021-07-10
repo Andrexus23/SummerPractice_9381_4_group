@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class Quna { // если
     static MyLogger logger = new MyLogger();
-    static Saver saver = new Saver();
+    static Saver saver;
     static Graph graph;
 
     public static void algorithm(){
-        if(graph == null) System.exit(0); // для Вадика
-
-       // saver.appendGraph(graph, false);
+        saver = new Saver();
+        saver.setInitial(graph);
         for (Graph.Vertex v : graph.getLeftVertexes()) {
             if (v.getMatchingEdge() == null) {
                 ArrayList<Edge> list = new ArrayList<Edge>();
@@ -32,7 +31,7 @@ public class Quna { // если
         }
         logger.writeLog("Max matching is found. End of algorithm\n");
         System.out.print(logger.getLogMes());
-        graph.printMatching();
+        //graph.printMatching();
     }
 
 
@@ -165,36 +164,23 @@ public class Quna { // если
         catch (EOFException e){
             logger.writeLog("File data is incorrect. End of file was reached but not all the needed data are got\n");
             System.out.print(logger.getLogMes());
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
         catch (IOException e){
             logger.writeLog("Cannot open file\n");
             System.out.print(logger.getLogMes());
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
         catch(NumberFormatException e) {
             logger.writeLog("File data is incorrect\n");
             System.out.print(logger.getLogMes());
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
         return graph;
     }
-
-
-    static void printGraph(Graph graph) {
-        for (Graph.Vertex v : graph.getLeftVertexes()) {
-            System.out.print(v.getName() + ": ");
-            for (Edge e : v.edges) {
-                System.out.print(e.go(v).getName() + ", ");
-            }
-
-            System.out.println();
-        }
-    }
-
 
 }
 

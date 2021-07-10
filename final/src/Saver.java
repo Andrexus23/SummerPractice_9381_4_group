@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Saver  {
     private ArrayList<Step> steps;
+    private Graph initial;
     private int index;
 
     public Saver() {
@@ -10,8 +11,15 @@ public class Saver  {
     }
 
     public void appendGraph(Graph graph, boolean isEndOfIteration){
-        System.out.println("$$$$" + graph.getLeftVertexes().get(0).edges);
         steps.add(new Step(graph.copyGraph(), isEndOfIteration));
+    }
+
+    public void setInitial(Graph graph){
+        this.initial = graph.copyGraph();
+    }
+
+    public Graph getInitial(){
+        return this.initial;
     }
 
     public Graph stepForward(){

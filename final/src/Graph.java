@@ -87,12 +87,10 @@ class Graph {
         Graph graph = new Graph();
 
         for (Vertex v : this.getLeftVertexes()) {
-            System.out.println(v.getName() + ":" + v.edges.size());
             LeftVertex leftV = graph.new LeftVertex(v);
             graph.appendVertex(leftV);
 
             for (Edge e : v.edges) {
-                System.out.print(e + ", ");
                 RightVertex rightV = graph.getRightVertex(e.getRightVertex());
                 Edge edge = new Edge(e, leftV, rightV);
                 leftV.appendEdge(edge);
@@ -101,7 +99,6 @@ class Graph {
                 if(e.isIncludeMatching()) edge.doIncludeInMatching();
             }
         }
-        System.out.println("%%%" + graph.getEdges().size());
         return graph;
     }
 

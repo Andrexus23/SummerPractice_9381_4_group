@@ -80,7 +80,9 @@ public class GUI extends JFrame{
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                OpenFile();
+                if(!OpenFile()){
+                    JOptionPane.showMessageDialog(null,"File is empty or incorrect","Error",JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -211,20 +213,20 @@ public class GUI extends JFrame{
         }
     }
 
-    void OpenFile(){
+    boolean OpenFile(){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file to open");
         int userSelect = fileChooser.showOpenDialog(null);
         if(userSelect == JFileChooser.APPROVE_OPTION){
             File file = fileChooser.getSelectedFile();
             Quna.graph = Quna.inputGraphFromFile(file.getAbsolutePath());
-            System.out.println("OPENFILE " + Quna.graph.getLeftVertexes().get(0).edges);
         }
-        else{
-            return;
+        else return true;
+        if(Quna.graph != null) {
+            getInfoFromGraph();
+            return true;
         }
-        getInfoFromGraph();
-        System.out.println("OPENFILE AFTER GETINFO " + Quna.graph.getLeftVertexes().get(0).edges);
+        else return false;
     }
 
     Step getFromTape(){ // from saver

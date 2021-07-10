@@ -51,7 +51,6 @@ public class GraphView extends JComponent {
         Graphics2D g2;
         for(int i=0;i<inf.edges.showing;i++){
             g2 = (Graphics2D)g;
-            System.out.println(Quna.graph.getEdges());
             if (Quna.graph.findEdges(inf.first.vertex[inf.edges.edges[i].first.getSelectedIndex()].text.getText(), inf.second.vertex[inf.edges.edges[i].second.getSelectedIndex()].text.getText()).getIsResearchingNow())
                 g2.setStroke(new BasicStroke(6));
             else g2.setStroke(new BasicStroke(2));

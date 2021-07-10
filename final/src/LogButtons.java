@@ -102,6 +102,7 @@ public class LogButtons extends JPanel {
         AlgSimulation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                blockUnblockStepsIters(true);
                 Quna.graph = Quna.saver.reSet();
                 graph.repaint();
             }
@@ -215,12 +216,13 @@ public class LogButtons extends JPanel {
 
         }
         Quna.graph = new Graph(lv,rv,ed);
-        System.out.println("setGraph " + Quna.graph.getLeftVertexes().get(0).edges);
         Quna.algorithm();
 
         LogField.setText(Quna.logger.getLogMes().toString());
         graph.setVisible(true);
         blockUnblock(false);
+        blockUnblockStepsIters(false);
+        Quna.graph = Quna.saver.getInitial();
         graph.repaint();
     }
 
@@ -297,4 +299,12 @@ public class LogButtons extends JPanel {
         AlgIterFurther.setEnabled(!b);
         AlgIterBack.setEnabled(!b);
     }
+
+    void blockUnblockStepsIters(boolean b){
+        AlgStepFurther.setEnabled(b);
+        AlgStepBack.setEnabled(b);
+        AlgIterFurther.setEnabled(b);
+        AlgIterBack.setEnabled(b);
+    }
+
 }
